@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-background-color-by-name"
+description = "Enables the background_color_by_name command without any pre-configured scope."
+commands.allow = ["background_color_by_name"]
+
+[[permission]]
+identifier = "deny-background-color-by-name"
+description = "Denies the background_color_by_name command without any pre-configured scope."
+commands.deny = ["background_color_by_name"]

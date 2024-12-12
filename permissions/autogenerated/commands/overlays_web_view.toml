@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-overlays-web-view"
+description = "Enables the overlays_web_view command without any pre-configured scope."
+commands.allow = ["overlays_web_view"]
+
+[[permission]]
+identifier = "deny-overlays-web-view"
+description = "Denies the overlays_web_view command without any pre-configured scope."
+commands.deny = ["overlays_web_view"]

@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-background-color-by-hex-string"
+description = "Enables the background_color_by_hex_string command without any pre-configured scope."
+commands.allow = ["background_color_by_hex_string"]
+
+[[permission]]
+identifier = "deny-background-color-by-hex-string"
+description = "Denies the background_color_by_hex_string command without any pre-configured scope."
+commands.deny = ["background_color_by_hex_string"]

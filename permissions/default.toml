@@ -1,0 +1,15 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = "Default permissions for the plugin `status-bar`"
+permissions = [
+  "allow-background-color-by-hex-string",
+  "allow-background-color-by-name",
+  "allow-hide",
+  "allow-is-visible",
+  "allow-overlays-web-view",
+  "allow-registerListener",
+  "allow-show",
+  "allow-style-default",
+  "allow-style-light-content",
+]
