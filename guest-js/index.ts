@@ -1,92 +1,47 @@
 import { addPluginListener, invoke } from "@tauri-apps/api/core";
 
-/**
- * Make the statusbar overlay or not overlay the WebView.
- *
- * Set to true to make the statusbar overlay on top of your app.
- * Ensure that you adjust your styling accordingly so that
- * your app's title bar or content is not covered.
- * Set to false to make the statusbar solid and not overlay your app.
- * You can then set the style and background color to suit using the other functions.
- *
- * **Support iOS, Android@5+**
- * @param overlay
- */
-export async function overlaysWebView(overlay: boolean) {
-  return await invoke<void>("plugin:status-bar|overlays_web_view", {
-    payload: { overlay },
-  });
+export interface SetStatusBarOptions {
+  /** Make the statusbar overlay or not overlay the WebView. */
+  overlay?: boolean;
+  /**
+   * Sets the background color of the statusbar by a hex string.
+   *
+   * @example
+   * - 'transparent'
+   * - '000'
+   * - '#f34'
+   * - '#f3d74b'
+   * - '#3ff3d74b' (AARRGGBB)
+   */
+  backgroundColor?: string;
+  /**
+   * Use the lightContent statusbar (light text, for dark backgrounds).
+   *
+   * **Note**: In Android, only support version `>=6`.
+   * In higher versions, the foreground color will automatically adapt to light or dark
+   * based on the background color, which is also ineffective.
+   */
+  lightStyle?: boolean;
 }
 
 /**
- * Use the default statusbar (dark text, for light backgrounds).
- *
- * **Support iOS, Android@6+**
- */
-export async function styleDefault() {
-  return await invoke<void>("plugin:status-bar|style_default");
-}
-
-/**
- * Use the lightContent statusbar (light text, for dark backgrounds).
- *
- * **Support iOS, Android@6+**
- */
-export async function styleLightContent() {
-  return await invoke<void>("plugin:status-bar|style_light_content");
-}
-
-export enum NameColor {
-  black = "#000000",
-  darkGray = "#A9A9A9",
-  lightGray = "#D3D3D3",
-  white = "#FFFFFF",
-  gray = "#808080",
-  red = "#FF0000",
-  green = "#00FF00",
-  blue = "#0000FF",
-  cyan = "#00FFFF",
-  yellow = "#FFFF00",
-  magenta = "#FF00FF",
-  orange = "#FFA500",
-  purple = "#800080",
-  brown = "#A52A2A",
-}
-
-/**
- * On iOS, when you set StatusBar.overlaysWebView to false,
- * you can set the background color of the statusbar by color name.
+ * Set and change the status bar.
  *
  * **Support iOS, Android**
- * @param colorName [NameColor]
  */
-export async function backgroundColorByName(colorName: NameColor) {
-  return await backgroundColorByHexString(colorName);
-}
-
-/**
- * Sets the background color of the statusbar by a hex string.
- * CSS shorthand properties are also supported.
- * On iOS, when you set StatusBar.overlaysWebView to false,
- * you can set the background color of the statusbar by a hex string (#RRGGBB).
- * On Android, when StatusBar.overlaysWebView is true,
- * you can also specify values as #AARRGGBB, where AA is an alpha value.
- *
- * **Support iOS, Android**
- * @param hexColor eg: '#C0C0C0', '#333', '3f333333'
- */
-export async function backgroundColorByHexString(hexColor: string) {
-  if (!hexColor) return;
-  let color = hexColor;
-  if (color.charAt(0) !== "#") {
-    color = `#${color}`;
+export async function setStatusBar(options?: SetStatusBarOptions) {
+  let color = options?.backgroundColor;
+  if (color && color !== "transparent") {
+    if (color.charAt(0) !== "#") {
+      color = `#${color}`;
+    }
+    if (color.length === 4) {
+      const [, r, g, b] = color.split("");
+      color = `#${r}${r}${g}${g}${b}${b}`;
+    }
   }
-  if (color.length === 4) {
-    const [, r, g, b] = color.split("");
-    color = `#${r}${r}${g}${g}${b}${b}`;
-  }
-  return await invoke<void>("plugin:status-bar|background_color_by_hex_string", {
-    payload: { color },
+  return await invoke<void>("plugin:status-bar|set_status_bar", {
+    payload: { overlay: options?.overlay, lightStyle: options?.lightStyle, backgroundColor: color },
   });
 }
 
@@ -97,15 +52,6 @@ export async function backgroundColorByHexString(hexColor: string) {
  */
 export async function hide() {
   return await invoke<void>("plugin:status-bar|hide");
-}
-
-/**
- * Shows the statusbar.
- *
- * **Support iOS, Android**
- */
-export async function show() {
-  return await invoke<void>("plugin:status-bar|show");
 }
 
 /**

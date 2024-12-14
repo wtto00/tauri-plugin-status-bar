@@ -1,11 +1,6 @@
 const COMMANDS: &[&str] = &[
-    "overlays_web_view",
-    "style_default",
-    "style_light_content",
-    "background_color_by_name",
-    "background_color_by_hex_string",
+    "set_status_bar",
     "hide",
-    "show",
     "is_visible",
     "registerListener",
 ];

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Theme.tauri_app" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Customize your theme here. -->
+    <!--    <item name="android:windowTranslucentStatus">true</item>-->
+    <!--    <item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!--    <item name="android:windowLightStatusBar">true</item>-->
+
+    <item name="android:windowTranslucentNavigation">true</item>
+    <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
+</resources>

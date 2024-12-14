@@ -25,39 +25,14 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct StatusBar<R: Runtime>(PluginHandle<R>);
 
 impl<R: Runtime> StatusBar<R> {
-    pub fn overlays_web_view(&self, payload: OverlaysWebViewRequest) -> crate::Result<()> {
+    pub fn set_status_bar(&self, payload: Option<SetStatusBarRequest>) -> crate::Result<()> {
         self.0
-            .run_mobile_plugin("overlaysWebView", payload)
-            .map_err(Into::into)
-    }
-
-    pub fn style_default(&self) -> crate::Result<()> {
-        self.0
-            .run_mobile_plugin("styleDefault", ())
-            .map_err(Into::into)
-    }
-
-    pub fn style_light_content(&self) -> crate::Result<()> {
-        self.0
-            .run_mobile_plugin("styleLightContent", ())
-            .map_err(Into::into)
-    }
-
-    pub fn background_color_by_hex_string(
-        &self,
-        payload: BackgroundColorByHexStringRequest,
-    ) -> crate::Result<()> {
-        self.0
-            .run_mobile_plugin("backgroundColorByHexString", payload)
+            .run_mobile_plugin("setStatusBar", payload)
             .map_err(Into::into)
     }
 
     pub fn hide(&self) -> crate::Result<()> {
         self.0.run_mobile_plugin("hide", ()).map_err(Into::into)
-    }
-
-    pub fn show(&self) -> crate::Result<()> {
-        self.0.run_mobile_plugin("show", ()).map_err(Into::into)
     }
 
     pub fn is_visible(&self) -> crate::Result<bool> {

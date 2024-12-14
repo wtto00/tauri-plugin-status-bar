@@ -295,26 +295,6 @@
       "type": "string",
       "oneOf": [
         {
-          "description": "Enables the background_color_by_hex_string command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-background-color-by-hex-string"
-        },
-        {
-          "description": "Denies the background_color_by_hex_string command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-background-color-by-hex-string"
-        },
-        {
-          "description": "Enables the background_color_by_name command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-background-color-by-name"
-        },
-        {
-          "description": "Denies the background_color_by_name command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-background-color-by-name"
-        },
-        {
           "description": "Enables the hide command without any pre-configured scope.",
           "type": "string",
           "const": "allow-hide"
@@ -335,16 +315,6 @@
           "const": "deny-is-visible"
         },
         {
-          "description": "Enables the overlays_web_view command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-overlays-web-view"
-        },
-        {
-          "description": "Denies the overlays_web_view command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-overlays-web-view"
-        },
-        {
           "description": "Enables the registerListener command without any pre-configured scope.",
           "type": "string",
           "const": "allow-registerListener"
@@ -355,34 +325,14 @@
           "const": "deny-registerListener"
         },
         {
-          "description": "Enables the show command without any pre-configured scope.",
+          "description": "Enables the set_status_bar command without any pre-configured scope.",
           "type": "string",
-          "const": "allow-show"
+          "const": "allow-set-status-bar"
         },
         {
-          "description": "Denies the show command without any pre-configured scope.",
+          "description": "Denies the set_status_bar command without any pre-configured scope.",
           "type": "string",
-          "const": "deny-show"
-        },
-        {
-          "description": "Enables the style_default command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-style-default"
-        },
-        {
-          "description": "Denies the style_default command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-style-default"
-        },
-        {
-          "description": "Enables the style_light_content command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-style-light-content"
-        },
-        {
-          "description": "Denies the style_light_content command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-style-light-content"
+          "const": "deny-set-status-bar"
         },
         {
           "description": "Default permissions for the plugin `status-bar`",

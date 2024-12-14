@@ -1,16 +1,5 @@
 <script>
-import Greet from "./lib/Greet.svelte";
-import {
-	backgroundColorByHexString,
-	backgroundColorByName,
-	hide,
-	isVisible,
-	NameColor,
-	overlaysWebView,
-	show,
-	styleDefault,
-	styleLightContent,
-} from "tauri-plugin-status-bar-api";
+import { setStatusBar, hide, isVisible } from "tauri-plugin-status-bar-api";
 
 let response = "";
 
@@ -27,7 +16,11 @@ function _clearLogs() {
 let isOverlaysWebView = false;
 
 function _overlaysWebView() {
-	overlaysWebView(!isOverlaysWebView)
+	setStatusBar({
+		overlay: !isOverlaysWebView,
+		backgroundColor: !isOverlaysWebView ? "transparent" : "#000",
+		lightStyle: isOverlaysWebView,
+	})
 		.then(() => {
 			updateResponse(`Change overlaysWebView to ${!isOverlaysWebView}`);
 			isOverlaysWebView = !isOverlaysWebView;
@@ -37,17 +30,17 @@ function _overlaysWebView() {
 		});
 }
 
-function _styleDefault() {
-	styleDefault()
+function _styleDarkContent() {
+	setStatusBar({ lightStyle: false })
 		.then(() => {
-			updateResponse("styleDefault OK");
+			updateResponse("styleDarkContent OK");
 		})
 		.catch((err) => {
-			updateResponse(`styleDefault error: ${err}`);
+			updateResponse(`styleDarkContent error: ${err}`);
 		});
 }
 function _styleLightContent() {
-	styleLightContent()
+	setStatusBar({ lightStyle: true })
 		.then(() => {
 			updateResponse("styleLightContent OK");
 		})
@@ -55,26 +48,14 @@ function _styleLightContent() {
 			updateResponse(`styleLightContent error: ${err}`);
 		});
 }
-const colorNames = Object.values(NameColor);
-let i = 0;
-function _backgroundColorByName() {
-	if (i >= colorNames.length) i = 0;
-	const color = colorNames[i];
-	backgroundColorByName(color)
+function _background() {
+	const color = Math.random() > 0.5 ? "#000" : "#A76";
+	setStatusBar({ backgroundColor: color })
 		.then(() => {
-			updateResponse(`backgroundColorByName(${color}) OK`);
+			updateResponse(`backgroundColor ${color} OK`);
 		})
 		.catch((err) => {
-			updateResponse(`backgroundColorByName(${color}) error: ${err}`);
-		});
-}
-function _backgroundColorByHexString() {
-	backgroundColorByHexString("#A76")
-		.then(() => {
-			updateResponse("backgroundColorByHexString OK");
-		})
-		.catch((err) => {
-			updateResponse(`backgroundColorByHexString error: ${err}`);
+			updateResponse(`backgroundColor error: ${err}`);
 		});
 }
 function _hide() {
@@ -87,7 +68,7 @@ function _hide() {
 		});
 }
 function _show() {
-	show()
+	setStatusBar()
 		.then(() => {
 			updateResponse("show OK");
 		})
@@ -127,16 +108,11 @@ function _onStatusTap() {}
   </p>
 
 	<button on:click="{_clearLogs}">clear logs</button>
-  <div class="row">
-    <Greet />
-  </div>
-
   <div>
     <button on:click="{_overlaysWebView}">overlaysWebView</button>
-    <button on:click="{_styleDefault}">styleDefault</button>
+    <button on:click="{_styleDarkContent}">styleDarkContent</button>
     <button on:click="{_styleLightContent}">styleLightContent</button>
-    <button on:click="{_backgroundColorByName}">backgroundColorByName</button>
-    <button on:click="{_backgroundColorByHexString}">backgroundColorByHexString</button>
+    <button on:click="{_background}">backgroundColor</button>
     <button on:click="{_hide}">hide</button>
     <button on:click="{_show}">show</button>
     <button on:click="{_isVisible}">isVisible</button>
@@ -154,4 +130,8 @@ function _onStatusTap() {}
   .logo.svelte:hover {
     filter: drop-shadow(0 0 2em #ff3e00);
   }
+
+	button {
+		margin-bottom: 12px;
+	}
 </style>

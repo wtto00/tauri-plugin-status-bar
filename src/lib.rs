@@ -38,15 +38,11 @@ impl<R: Runtime, T: Manager<R>> crate::StatusBarExt<R> for T {
 
 /// Initializes the plugin.
 #[cfg(mobile)]
-pub fn init<R: Runtime>() -> TauriPlugin<R, Option<Config>> {
-    Builder::<R, Option<Config>>::new("status-bar")
+pub fn init<R: Runtime>() -> TauriPlugin<R> {
+    Builder::new("status-bar")
         .invoke_handler(tauri::generate_handler![
-            commands::overlays_web_view,
-            commands::style_default,
-            commands::style_light_content,
-            commands::background_color_by_hex_string,
+            commands::set_status_bar,
             commands::hide,
-            commands::show,
             commands::is_visible,
         ])
         .setup(|app, api| {

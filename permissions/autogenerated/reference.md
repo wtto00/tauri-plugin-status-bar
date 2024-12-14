@@ -2,15 +2,10 @@
 
 Default permissions for the plugin `status-bar`
 
-- `allow-background-color-by-hex-string`
-- `allow-background-color-by-name`
 - `allow-hide`
 - `allow-is-visible`
-- `allow-overlays-web-view`
+- `allow-set-status-bar`
 - `allow-registerListener`
-- `allow-show`
-- `allow-style-default`
-- `allow-style-light-content`
 
 ## Permission Table
 
@@ -20,58 +15,6 @@ Default permissions for the plugin `status-bar`
 <th>Description</th>
 </tr>
 
-
-<tr>
-<td>
-
-`status-bar:allow-background-color-by-hex-string`
-
-</td>
-<td>
-
-Enables the background_color_by_hex_string command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-background-color-by-hex-string`
-
-</td>
-<td>
-
-Denies the background_color_by_hex_string command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:allow-background-color-by-name`
-
-</td>
-<td>
-
-Enables the background_color_by_name command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-background-color-by-name`
-
-</td>
-<td>
-
-Denies the background_color_by_name command without any pre-configured scope.
-
-</td>
-</tr>
 
 <tr>
 <td>
@@ -128,32 +71,6 @@ Denies the is_visible command without any pre-configured scope.
 <tr>
 <td>
 
-`status-bar:allow-overlays-web-view`
-
-</td>
-<td>
-
-Enables the overlays_web_view command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-overlays-web-view`
-
-</td>
-<td>
-
-Denies the overlays_web_view command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
 `status-bar:allow-registerListener`
 
 </td>
@@ -180,25 +97,12 @@ Denies the registerListener command without any pre-configured scope.
 <tr>
 <td>
 
-`status-bar:allow-show`
+`status-bar:allow-set-status-bar`
 
 </td>
 <td>
 
-Enables the show command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-show`
-
-</td>
-<td>
-
-Denies the show command without any pre-configured scope.
+Enables the set_status_bar command without any pre-configured scope.
 
 </td>
 </tr>
@@ -206,51 +110,12 @@ Denies the show command without any pre-configured scope.
 <tr>
 <td>
 
-`status-bar:allow-style-default`
+`status-bar:deny-set-status-bar`
 
 </td>
 <td>
 
-Enables the style_default command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-style-default`
-
-</td>
-<td>
-
-Denies the style_default command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:allow-style-light-content`
-
-</td>
-<td>
-
-Enables the style_light_content command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`status-bar:deny-style-light-content`
-
-</td>
-<td>
-
-Denies the style_light_content command without any pre-configured scope.
+Denies the set_status_bar command without any pre-configured scope.
 
 </td>
 </tr>

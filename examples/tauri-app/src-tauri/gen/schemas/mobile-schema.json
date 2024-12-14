@@ -1692,6 +1692,11 @@
           "const": "status-bar:allow-registerListener"
         },
         {
+          "description": "Enables the set_status_bar command without any pre-configured scope.",
+          "type": "string",
+          "const": "status-bar:allow-set-status-bar"
+        },
+        {
           "description": "Enables the show command without any pre-configured scope.",
           "type": "string",
           "const": "status-bar:allow-show"
@@ -1735,6 +1740,11 @@
           "description": "Denies the registerListener command without any pre-configured scope.",
           "type": "string",
           "const": "status-bar:deny-registerListener"
+        },
+        {
+          "description": "Denies the set_status_bar command without any pre-configured scope.",
+          "type": "string",
+          "const": "status-bar:deny-set-status-bar"
         },
         {
           "description": "Denies the show command without any pre-configured scope.",
