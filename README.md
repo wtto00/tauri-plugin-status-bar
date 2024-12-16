@@ -114,6 +114,8 @@ The file for modifying the dark theme is `src-tauri/gen/android/app/src/main/res
 
 1. Hide the status bar at startup.
 
+   **Android**
+
    ```xml
    <item name="android:windowTranslucentNavigation">true</item>
    <item name="android:windowLayoutInDisplayCutoutMode">shortEges</item>
@@ -121,6 +123,17 @@ The file for modifying the dark theme is `src-tauri/gen/android/app/src/main/res
    ```
 
    `windowLayoutInDisplayCutoutMode` Added in API level 27. If your App's minimum supported version is lower than Android@8.1, you need to move this configuration to the file `src-tauri/gen/android/app/src/main/res/values-v27/themes.xml` and `src-tauri/gen/android/app/src/main/res/values-night-v27/themes.xml`.
+
+   **iOS**
+
+   ```xml
+   <key>UIStatusBarHidden</key>
+   <true/>
+   <key>UIViewControllerBasedStatusBarAppearance</key>
+   <false/>
+   ```
+
+   Add these configurations in file `src-tauri/Info.ios.plist`.
 
 1. Use default scroll-to-top behavior.
 
