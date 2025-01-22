@@ -67,73 +67,97 @@ Install the `status-bar` plugin to get started.
 
 Due to the Tauri plugin being unable to execute operations before the webview loads, it is not possible to initialize user-defined configurations within the plugin.
 
-For the initialization configuration, you can modify the file `src-tauri/gen/android/app/src/main/res/values/themes.xml` and add the following configuration in the default theme `Theme.tauri_app`.
-
-The file for modifying the dark theme is `src-tauri/gen/android/app/src/main/res/values-night/themes.xml`.
-
 1. Make the statusbar overlay the WebView at startup.
 
-   ```xml
-   <item name="android:windowTranslucentStatus">true</item>
-   ```
+   - **Android**
+     For the initialization configuration, you can modify the file `src-tauri/gen/android/app/src/main/res/values/themes.xml` and add the following configuration in the default theme `Theme.tauri_app`.
 
-   - `true`: the status bar overlays the WebView.
-   - `false`: the status bar not overlays the WebView.
+     The file for modifying the dark theme is `src-tauri/gen/android/app/src/main/res/values-night/themes.xml`.
+
+     ```xml
+     <item name="android:windowTranslucentStatus">true</item>
+     ```
+
+     - `true`: the status bar overlays the WebView.
+     - `false`: the status bar not overlays the WebView.
+
+   - **iOS**
+     Starting with iOS 11 you must include `viewport-fit=cover` in your viewport meta tag of `index.html` if you want the status bar to overlay the webview:
+
+     ```html
+     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
+     ```
 
    If the status bar overlays the webview, you also need to configure the background color to be transparent, and then set the text foreground color to dark or light based on the color of the webview.
 
-   Starting with iOS 11 you must include viewport-fit=cover in your viewport meta tag if you want the status bar to overlay the webview:
-
-   ```html
-   <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
-   ```
-
 1. Set the background color of the statusbar at startup.
 
-   ```xml
-   <item name="android:statusBarColor">@android:color/black</item>
-   ```
+   - **Android**
 
-   There are some available formats that can be set, such as:
+     ```xml
+     <item name="android:statusBarColor">@android:color/black</item>
+     ```
 
-   - Reference the color resources defined in the `res/values/colors.xml` file: `@color/purple_500`
-   - Directly use ARGB or RGB format hexadecimal color values: `#FF0000FF`, `#800000FF`, `#0000FF`
-   - Reference the color attributes in the theme: `?attr/colorPrimaryDark`
-   - Reference the colorStateList file defined in the `res/color/` folder: `@color/custom_color_state`
-   - Use the transparent value provided by the system: `@android:color/transparent`
-   - Reference system-defined color resources: `@android:color/holo_blue_dark`
+     There are some available formats that can be set, such as:
+
+     - Reference the color resources defined in the `res/values/colors.xml` file: `@color/purple_500`
+     - Directly use ARGB or RGB format hexadecimal color values: `#FF0000FF`, `#800000FF`, `#0000FF`
+     - Reference the color attributes in the theme: `?attr/colorPrimaryDark`
+     - Reference the colorStateList file defined in the `res/color/` folder: `@color/custom_color_state`
+     - Use the transparent value provided by the system: `@android:color/transparent`
+     - Reference system-defined color resources: `@android:color/holo_blue_dark`
+
+   - **iOS**
+
+     Since `Tauri` does not expose `AppDelegate`, the `iOS` platform cannot configure this option during app initialization.
 
 1. Set the status bar style at startup.
 
-   ```xml
-   <item name="android:windowLightStatusBar">true</item>
-   ```
+   - **Android**
 
-   - `true`: the status bar text is dark.
-   - `false`: the status bar text is light.
+     ```xml
+     <item name="android:windowLightStatusBar">true</item>
+     ```
+
+     - `true`: the status bar text is dark.
+     - `false`: the status bar text is light.
+
+   - **iOS**
+
+     ```xml
+     <key>UIStatusBarStyle</key>
+     <!-- default -->
+     <string></string>
+     <!-- light content -->
+     <string>UIStatusBarStyleLightContent</string>
+     <!-- dark content -->
+     <string>UIStatusBarStyleDarkContent</string>
+     ```
+
+     Add these configurations in file `src-tauri/Info.ios.plist`.
 
 1. Hide the status bar at startup.
 
-   **Android**
+   - **Android**
 
-   ```xml
-   <item name="android:windowTranslucentNavigation">true</item>
-   <item name="android:windowLayoutInDisplayCutoutMode">shortEges</item>
-   <item name="android:windowFullscreen">true</item>
-   ```
+     ```xml
+     <item name="android:windowTranslucentNavigation">true</item>
+     <item name="android:windowLayoutInDisplayCutoutMode">shortEges</item>
+     <item name="android:windowFullscreen">true</item>
+     ```
 
-   `windowLayoutInDisplayCutoutMode` Added in API level 27. If your App's minimum supported version is lower than Android@8.1, you need to move this configuration to the file `src-tauri/gen/android/app/src/main/res/values-v27/themes.xml` and `src-tauri/gen/android/app/src/main/res/values-night-v27/themes.xml`.
+     `windowLayoutInDisplayCutoutMode` Added in API level 27. If your App's minimum supported version is lower than Android@8.1, you need to move this configuration to the file `src-tauri/gen/android/app/src/main/res/values-v27/themes.xml` and `src-tauri/gen/android/app/src/main/res/values-night-v27/themes.xml`.
 
-   **iOS**
+   - **iOS**
 
-   ```xml
-   <key>UIStatusBarHidden</key>
-   <true/>
-   <key>UIViewControllerBasedStatusBarAppearance</key>
-   <false/>
-   ```
+     ```xml
+     <key>UIStatusBarHidden</key>
+     <true/>
+     <key>UIViewControllerBasedStatusBarAppearance</key>
+     <false/>
+     ```
 
-   Add these configurations in file `src-tauri/Info.ios.plist`.
+     Add these configurations in file `src-tauri/Info.ios.plist`.
 
 1. Use default scroll-to-top behavior.
 

@@ -295,7 +295,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tauri.dev;
 				PRODUCT_NAME = "tauri-app";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64  x86_64";
 			};
 			name = debug;
@@ -467,7 +470,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tauri.dev;
 				PRODUCT_NAME = "tauri-app";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64  x86_64";
 			};
 			name = release;

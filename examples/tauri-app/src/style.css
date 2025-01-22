@@ -14,12 +14,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  margin: 0;
+}
+
 .container {
   margin: 0;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
 }
 
@@ -43,6 +45,7 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  overflow: hidden;
 }
 
 a:hover {

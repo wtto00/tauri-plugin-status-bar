@@ -11,11 +11,7 @@ import Tauri
 import UIKit
 import WebKit
 
-class PingArgs: Decodable {
-  let value: String?
-}
-
-let log = OSLog(subsystem: "com.tauri.dev", category: "plugin.network.status_bar")
+let log = OSLog(subsystem: "com.tauri.dev", category: "plugin.status_bar")
 
 class SetStatusBarArgs: Decodable {
   let overlay: Bool?
@@ -24,11 +20,6 @@ class SetStatusBarArgs: Decodable {
 }
 
 class StatusBarPlugin: Plugin {
-  @objc public func ping(_ invoke: Invoke) throws {
-    let args = try invoke.parseArgs(PingArgs.self)
-    invoke.resolve(["value": args.value ?? ""])
-  }
-
   private var backgroundColor: UIColor = .clear
   private var lightStyle: Bool = false
   private var overlay: Bool = true
