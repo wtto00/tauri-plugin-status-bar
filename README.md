@@ -244,6 +244,8 @@ Listen for this event to know if the statusbar was tapped.
 
 Only support a single callback, so repeated calls will cause the previous listener to be overridden.
 
+If the parameter is empty, the listener will be canceled, and the default system status bar tap behavior will be used (i.e., double-tap to scroll to the top).
+
 **Support**: `iOS`
 
 ```js
@@ -251,7 +253,7 @@ onStatusTap(() => {
   // scroll-up with document.body.scrollTop = 0; or do whatever you want
 });
 
-// cancel the listener
+// cancel the listener and use default system status bar tap behavior
 onStatusTap();
 ```
 

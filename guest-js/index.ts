@@ -63,9 +63,9 @@ export async function isVisible() {
   return await invoke<boolean>("plugin:status-bar|is_visible");
 }
 
-let _onStatusTap: (available: boolean) => void;
-function onStatusTapCallback(available: boolean) {
-  _onStatusTap?.(available);
+let _onStatusTap: () => void;
+function onStatusTapCallback() {
+  _onStatusTap?.();
 }
 /**
  * Listen for this event to know if the statusbar was tapped.
@@ -73,9 +73,15 @@ function onStatusTapCallback(available: boolean) {
  * **Only support iOS**
  * @param callback unlisten if callback is empty.
  */
-export function onStatusTap(callback: () => void = () => {}) {
+export async function onStatusTap(callback?: () => void) {
   if (!_onStatusTap) {
     addPluginListener("status-bar", "statusTap", onStatusTapCallback);
   }
-  _onStatusTap = callback;
+  if (callback) {
+    _onStatusTap = callback;
+    await invoke<void>("plugin:status-bar|default_scroll_top", { payload: false });
+  } else {
+    _onStatusTap = () => {};
+    await invoke<void>("plugin:status-bar|default_scroll_top", { payload: true });
+  }
 }

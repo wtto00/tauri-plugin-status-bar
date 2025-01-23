@@ -19,6 +19,32 @@ Default permissions for the plugin `status-bar`
 <tr>
 <td>
 
+`status-bar:allow-default-scroll-top`
+
+</td>
+<td>
+
+Enables the default_scroll_top command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`status-bar:deny-default-scroll-top`
+
+</td>
+<td>
+
+Denies the default_scroll_top command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 `status-bar:allow-hide`
 
 </td>
